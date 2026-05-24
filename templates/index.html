@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Brain Tumor Detection</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="main-container">
+
+        <div class="card">
+
+            <h1>🧠 Brain Tumor Detection</h1>
+
+            <p class="subtitle">
+                Upload MRI image to detect brain tumor using CNN
+            </p>
+
+            <form action="/predict"
+                  method="POST"
+                  enctype="multipart/form-data">
+
+                <div class="upload-box">
+
+                    <input type="file"
+                           name="image"
+                           accept="image/*"
+                           required>
+
+                </div>
+
+                <button type="submit">
+                    Predict Result
+                </button>
+
+            </form>
+
+            {% if prediction %}
+
+            <div class="result-container">
+
+                <h2>Prediction Result</h2>
+
+                <div class="result-card">
+
+                    <img src="{{ image_path }}"
+                         alt="MRI Image">
+
+                    <div class="result-details">
+
+                        <h3>{{ prediction }}</h3>
+
+                    </div>
+
+                </div>
+
+                <a href="/">
+
+                    <button class="new-test-btn">
+                        Test Another Image
+                    </button>
+
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
